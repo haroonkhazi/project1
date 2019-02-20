@@ -28,7 +28,7 @@ y = data['label']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
 n_estimators = [int(x) for x in np.linspace(start = 200, stop = 2000, num = 10)]
-max_features = ['auto', 'sqrt']
+max_features = ['log2', 'sqrt']
 max_depth = [int(x) for x in np.linspace(10, 110, num = 11)]
 max_depth.append(None)
 min_samples_split = [2, 5, 10]

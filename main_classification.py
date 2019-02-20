@@ -42,7 +42,7 @@ rfc_testingdata.to_csv("testingwlabels_rfc.csv", sep=',', encoding='utf-8',index
 del rfc_testingdata
 
 y_predict_knc_testingdata = knc.predict(X_testingdata)
-print("knc testing data frist 16")
+print("knc testing data first 16")
 print(y_predict_knc_testingdata[0:16])
 y_predict_knc_testingdata = pd.Series(y_predict_knc_testingdata)
 knc_testingdata = pd.read_csv("testing.csv")
