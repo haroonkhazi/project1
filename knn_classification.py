@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import RandomizedSearchCV
 from sklearn.metrics import accuracy_score
 
 data = pd.read_csv("training.csv")
@@ -33,7 +33,9 @@ random_grid = {'n_neighbors':[5,9,13,17,21,25,29],
                'leaf_size': [int(x) for x in np.linspace(start=30, stop=400, num = 10)]}
 pprint(random_grid)
 knc = KNeighborsClassifier()
-knc_random = GridSearchCV(knc, random_grid, cv=3)
+knc_random = RandomizedSearchCV(estimator=knc, 
+	param_distributions=random_grid, n_iter=30, cv=2,
+	verbose=2, random_state=42, n_jobs=-1)
 knc_random.fit(X_train, y_train)
 print(knc_random.best_params_)
 best_random = knc_random.best_estimator_
