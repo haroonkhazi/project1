@@ -18,7 +18,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random
 rfc = RandomForestClassifier(n_estimators=1000, min_samples_split=2, min_samples_leaf=2, max_features='auto', max_depth=50, bootstrap=False)
 rfc.fit(X_train, y_train)
 y_predict_rfc = rfc.predict(X_test)
-print(y_predict_rfc)
+print(y_predict_rfc[0:16])
 acc_score = accuracy_score(y_test, y_predict_rfc)
 print(acc_score)
 
@@ -26,12 +26,14 @@ knc = KNeighborsClassifier(weights='distance', n_neighbors=5,
         leaf_size=71, algorithm='ball_tree')
 knc.fit(X_train, y_train)
 y_predict_knc = knc.predict(X_test)
-print(y_predict_knc)
+print(y_predict_knc[0:16])
 acc_score = accuracy_score(y_test, y_predict_knc)
 print(acc_score)
+del data
 
 X_testingdata = data2.iloc[:, 0:]
 y_predict_rfc_testingdata = rfc.predict(X_testingdata)
+print(y_predict_rfc_testingdata[0:16])
 y_predict_rfc_testingdata = pd.Series(y_predict_rfc_testingdata)
 rfc_testingdata = pd.read_csv("testing.csv")
 rfc_testingdata.insert(loc=0, column="label", value=y_predict_rfc_testingdata)
@@ -39,6 +41,7 @@ rfc_testingdata.to_csv("testingwlabels_rfc.csv", sep=',', encoding='utf-8')
 del rfc_testingdata
 
 y_predict_knc_testingdata = knc.predict(X_testingdata)
+print(y_predict_knc_testingdata[0:16])
 y_predict_knc_testingdata = pd.Series(y_predict_knc_testingdata)
 knc_testingdata = pd.read_csv("testing.csv")
 knc_testingdata.insert(loc=0, column="label", value=y_predict_knc_testingdata)
