@@ -22,16 +22,48 @@ print(y_predict_rfc)
 acc_score = accuracy_score(y_test, y_predict_rfc)
 print(acc_score)
 
+knc = KNeighborsClassifier(weights='distance', n_neighbors=5, 
+        leaf_size=71, algorithm='ball_tree')
+knc.fit(X_train, y_train)
+y_predict_knc = knc.predict(X_test)
+print(y_predict_knc)
+acc_score = accuracy_score(y_test, y_predict_knc)
+print(acc_score)
+
 X_testingdata = data2.iloc[:, 0:]
 y_predict_rfc_testingdata = rfc.predict(X_testingdata)
 y_predict_rfc_testingdata = pd.Series(y_predict_rfc_testingdata)
-data2.insert(loc=0, column="label", value=y_predict_rfc_testingdata)
-data2.to_csv("testingwithlabels.csv", sep=',', encoding='utf-8')
+rfc_testingdata = data2
+rfc_testingdata.insert(loc=0, column="label", value=y_predict_rfc_testingdata)
+rfc_testingdata.to_csv("testingwlabels_rfc.csv", sep=',', encoding='utf-8')
 
-data = pd.read_csv("testingwithlabels.csv")
-X = data.iloc[:, 2:]
-y = data['label']
-y_predict_rfc = rfc.predict(X)
+y_predict_knc_testingdata = knc.predict(X_testingdata)
+y_predict_knc_testingdata = pd.Series(y_predict_knc_testingdata)
+knc_testingdata = data2
+knc_testingdata.insert(loc=0, column="label", value=y_predict_knc_testingdata)
+knc_testingdata.to_csv("testingwlabels_knc.csv", sep=',', encoding='utf-8')
+acc_score = accuracy_score(y_predict_knc_testingdata, y_predict_rfc_testingdata)
+
+
+
+"""
+rfc_tl_data = pd.read_csv("testingwlabels_rfc.csv")
+X_rfc_tl = rfc_tl_data.iloc[:, 2:]
+y_rfc_tl = rfc_tl_data['label']
+y_predict_rfc = rfc.predict(X_rfc_tl)
 print(y_predict_rfc)
-acc_score = accuracy_score(y, y_predict_rfc)
+acc_score = accuracy_score(y_rfc_tl, y_predict_rfc)
 print(acc_score)
+
+knc_tl_data = pd.read_csv("testingwlabels_knc.csv")
+X_knc_tl = knc_tl_data.iloc[:, 2:]
+y_knc_tl = knc_tl_data['label']
+y_predict_knc = knc.predict(X_knc_tl)
+print(y_predict_knc)
+acc_score = accuracy_score(y_knc_tl, y_predict_knc)
+print(acc_score)
+"""
+
+
+
+
