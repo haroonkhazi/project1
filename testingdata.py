@@ -24,6 +24,8 @@ plt.show()
 
 with open("testingdata16.csv", 'r') as csvinput:
     with open("test.csv", 'w') as csvoutput:
+        writer = csv.writer(csvoutput, lineterminator='\n')
+        reader = csv.reader(csvinput)
         
 
 

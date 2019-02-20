@@ -27,3 +27,11 @@ y_predict_rfc_testingdata = rfc.predict(X_testingdata)
 y_predict_rfc_testingdata = pd.Series(y_predict_rfc_testingdata)
 data2.insert(loc=0, column="label", value=y_predict_rfc_testingdata)
 data2.to_csv("testingwithlabels", sep=',', encoding='utf-8')
+
+data = pd.read_csv("testingwithlabels")
+X = data.iloc[:, 1:]
+y = data['label']
+y_predict_rfc = rfc.predict(X)
+print(y_predict_rfc)
+acc_score = accuracy_score(y, y_predict_rfc)
+print(acc_score)
