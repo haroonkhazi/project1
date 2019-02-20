@@ -15,12 +15,6 @@ def plotNum(ind):
     plt.imshow(np.reshape(np.array(data.iloc[ind,1:]), (28, 28)), cmap="gray")
 
 
-#plt.figure()
-#for ii in range(1,17):
-#    plt.subplot(4,4,ii)
-#    plotNum(ii)
-#plt.show()
-
 
 
 X = data.iloc[:, 1:]
@@ -33,7 +27,10 @@ weights = ['uniform', 'distance']
 algorithm = {'auto', 'ball_tree', 'kd_tree', 'brute'}
 leaf_size = [int(x) for x in np.linspace(start=30, stop=400, num = 10)]
 
-random_grid = {'n_neighbors':n_neighbors,'weights': weights,'algorithm': algorithm,'leaf_size': leaf_size}
+random_grid = {'n_neighbors':[5,9,13,17,21,25,29],
+               'weights': ['uniform','distance'],
+               'algorithm': ['auto','ball_tree', 'kd_tree', 'brute'],
+               'leaf_size': [int(x) for x in np.linspace(start=30, stop=400, num = 10)]}
 pprint(random_grid)
 knc = KNeighborsClassifier()
 knc_random = GridSearchCV(knc, random_grid, cv=3)
