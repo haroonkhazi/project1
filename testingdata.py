@@ -1,25 +1,20 @@
 import csv
 import pandas as pd
 import numpy as np
-from pprint import pprint
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import RandomizedSearchCV
-from sklearn.metrics import accuracy_score
 
-data = pd.read_csv("training.csv")
+data = pd.read_csv("testingwlabels_knc.csv")
 
 
 def plotNum(ind):
-    plt.imshow(np.reshape(np.array(data.iloc[ind, 1:]), (28, 28)), cmap="gray")
+    plt.imshow(np.reshape(np.array(data.iloc[ind, 2:]), (28, 28)), cmap="gray")
 
+y = data['label']
 
 plt.figure()
 for ii in range(1,17):
-    plt.subplot(4,4,ii)
-    plotNum(ii)
+    plt.subplot(4,4,ii,title="{}".format(y[ii+16]))
+    plotNum(ii+16)
 plt.show()
-
+del data
 
