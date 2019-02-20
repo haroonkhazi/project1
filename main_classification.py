@@ -33,6 +33,7 @@ del data
 
 X_testingdata = data2.iloc[:, 0:]
 y_predict_rfc_testingdata = rfc.predict(X_testingdata)
+print("rfc testing data first 16")
 print(y_predict_rfc_testingdata[0:16])
 y_predict_rfc_testingdata = pd.Series(y_predict_rfc_testingdata)
 rfc_testingdata = pd.read_csv("testing.csv")
@@ -41,6 +42,7 @@ rfc_testingdata.to_csv("testingwlabels_rfc.csv", sep=',', encoding='utf-8')
 del rfc_testingdata
 
 y_predict_knc_testingdata = knc.predict(X_testingdata)
+print("knc testing data frist 16")
 print(y_predict_knc_testingdata[0:16])
 y_predict_knc_testingdata = pd.Series(y_predict_knc_testingdata)
 knc_testingdata = pd.read_csv("testing.csv")
@@ -48,7 +50,7 @@ knc_testingdata.insert(loc=0, column="label", value=y_predict_knc_testingdata)
 knc_testingdata.to_csv("testingwlabels_knc.csv", sep=',', encoding='utf-8')
 del knc_testingdata
 acc_score = accuracy_score(y_predict_knc_testingdata, y_predict_rfc_testingdata)
-
+print(acc_score)
 
 
 """
