@@ -49,9 +49,11 @@ rfc_random = RandomizedSearchCV(estimator = rfc,
     param_distributions = random_grid, n_iter = 100, cv = 3,
     verbose=2, random_state=42, n_jobs = -1)
 rfc_random.fit(X_train, y_train)
+print(rfc_random.best_params_)
 best_random = rfc_random.best_estimator_
 y_predict_rfc = rfc_random.predict(X_test)
 y_predict_rfc_best_random = best_random.predict(X_test)
+
 acc_random = accuracy_score(y_test, y_predict_rfc_best_random)
 acc_rfc = accuracy_score(y_test, y_predict_rfc)
 print(acc_rfc)
