@@ -1,0 +1,6 @@
+random forest params:
+{'n_estimators': 1000, 'min_samples_split': 2, 'min_samples_leaf': 2, 'max_features': 'auto', 'max_depth': 50, 'bootstrap': False}
+
+k nearest neighbours params:
+{'weights': 'distance', 'n_neighbors': 5, 'leaf_size': 71, 'algorithm': 'ball_tree'}
+
