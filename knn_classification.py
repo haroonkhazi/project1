@@ -15,11 +15,12 @@ y = data['label']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
 
-random_grid = {'n_neighbors':[int(x) for x in np.linspace(start = 5, stop = 31, num = 20)],
-               'metric': ['manhattan','minkowski','euclidean'],
-               'weights': ['uniform','distance'],
-               'algorithm': ['auto','ball_tree', 'kd_tree', 'brute'],
-               'leaf_size': [int(x) for x in np.linspace(start=30, stop=200, num = 10)]
+random_grid = {
+    'n_neighbors':[int(x) for x in np.linspace(start = 5, stop = 31, num = 20)],
+    'metric': ['manhattan','minkowski','euclidean'],
+    'weights': ['uniform','distance'],
+    'algorithm': ['auto','ball_tree', 'kd_tree', 'brute'],
+    'leaf_size': [int(x) for x in np.linspace(start=30, stop=200, num = 10)]
                }
 pprint(random_grid)
 knc = KNeighborsClassifier()
