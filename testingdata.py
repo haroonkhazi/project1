@@ -2,14 +2,18 @@ import csv
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.datasets import load_digits
 
 data = pd.read_csv("testingwlabels_knc.csv")
+data = load_digits()
 
 
 def plotNum(ind):
     plt.imshow(np.reshape(np.array(data.iloc[ind, 2:]), (28, 28)), cmap="gray")
 
 y = data['label']
+
+
 
 plt.figure()
 for ii in range(1,17):
