@@ -6,7 +6,8 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 import matplotlib
 from sklearn.metrics import accuracy_score
-%matplotlib inline
+
+
 train = pd.read_csv("training.csv")
 lab_encoder = LabelEncoder()
 label = train["label"]
