@@ -14,8 +14,8 @@ label_encoded = lab_encoder.fit_transform(label)
 label_encoded
 df2 = train.drop(columns = ["label"])
 x_train = df2.values
-x_test = x_train[15000:21000]
-x_train =x_train[0:14999]
+x_test = x_train[15000:21000] # testing on 1/3 of data
+x_train =x_train[0:14999] # training on 2/3 of data 
 from sklearn.preprocessing import MinMaxScaler
 scaling = MinMaxScaler(feature_range=(-1,1)).fit(x_train)
 x_train = scaling.transform(x_train)
