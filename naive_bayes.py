@@ -5,7 +5,6 @@ from sklearn.naive_bayes import MultinomialNB
 import matplotlib.pyplot as plt
 import matplotlib
 from sklearn.metrics import accuracy_score
-%matplotlib inline
 
 train = pd.read_csv("training.csv")
 lab_encoder = LabelEncoder()
@@ -24,4 +23,4 @@ compare = []
 for i in range(14001,21000): #testing on 1/3 of training data
     result = clf.predict(x_train[i].reshape(1, 784))
     compare.append(result[0])
-accuracy_score(compare, label[14001:21000]) # comparing 1/3 label data with predicted lables 
+accuracy_score(compare, label[14001:21000]) # comparing 1/3 label data with predicted lables
